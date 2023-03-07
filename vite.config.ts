@@ -56,7 +56,6 @@ export default defineConfig({
     esbuild: {
         // jsxFactory:"jsx",
         // // jsxFactory:"",
-
         // jsxInject:`/** @jsx jsx */\n import { jsx } from '@emotion/react'`,
         define: {
             this: 'window',
