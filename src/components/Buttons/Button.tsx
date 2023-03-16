@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import classnames from 'classnames';
 import {
     ButtonHTMLAttributes,
@@ -7,6 +8,7 @@ import {
     // HTMLProps,
     // MouseEventHandler,
     PropsWithChildren,
+    ReactNode,
     useMemo,
 } from 'react';
 
@@ -17,12 +19,13 @@ import styles from './button.module.scss';
     3. Any type of Button styles
 */
 interface IButtonBaseProps extends PropsWithChildren {
-    size?: 'small' | 'medium' | 'large' | 'x-large';
-    type?: 'success' | 'warning' | 'error' | 'info';
-    label?: string;
+    size?: 'small' | 'default' | 'large' | 'x-large';
+    type?: 'primary' | 'secondary' | 'tertiary';
+    shape?: 'default' | 'pill';
     fontSize?: number;
-    radium?: number;
     className?: string;
+    prefixElement?: ReactNode;
+    suffixElement?: ReactNode;
     // onClick?: MouseEventHandler;
     // onFocus?: FocusEventHandler;
     // onBlur?: FocusEventHandler;
@@ -31,50 +34,68 @@ interface IButtonBaseProps extends PropsWithChildren {
 type ButtonType = IButtonBaseProps & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<ButtonType> = ({
-    size = 'x-large',
-    type = 'default',
-    label = 'the button',
-    fontSize = 16,
-    // radium = 6,
+    size,
+    type,
+    fontSize,
+    shape,
+    children,
     className,
     ...props
 }) => {
-    const buttonStyles = useMemo(() => {
-        const sizeMap = {
-            small: 0.35,
-            medium: 0.5,
-            large: 0.65,
-            'x-large': 0.8,
-        };
-        const typeMap = {
-            success: '#A0D347',
-            info: '#3C8FFD',
-            warning: '#FFDE1E',
-            error: '#FF0D0C',
-            default: '#FE8A8A',
-        } as { [key: string]: string };
+    const { btnType, btnSize, btnFontSize, btnShape, btnChildren } = useMemo(() => {
         return {
-            '--button_bkg-color': typeMap[type],
-            '--button_font-size': `${fontSize}px`,
-            '--button_size': sizeMap[size],
-            // '--button_radium': `${radium}px`,
-        } as CSSProperties;
-        /* radium, */
-    }, [size, type, fontSize]);
+            btnSize: size || 'default',
+            btnType: type || 'primary',
+            btnChildren: children || 'Button',
+            btnFontSize: `${fontSize || 16}px`,
+            btnShape: shape || 'default',
+        };
+    }, [size, type, children, fontSize, shape]);
+
+    const { sizeMap, typeMap, radiumMap } = useMemo(() => {
+        return {
+            sizeMap: {
+                small: '0.35px',
+                default: '0.5px',
+                large: '0.65px',
+                'x-large': '0.8px',
+            } as { [key: string]: string },
+
+            typeMap: {
+                /* type?: 'primary' | 'secondary' | 'tertiary'; */
+                primary: '#FD5E53',
+                secondary: '#3C8FFD',
+                tertiary: '#FFDE1E',
+            } as { [key: string]: string },
+
+            radiumMap: {
+                default: '4px',
+                pill: '1000px',
+            },
+        };
+    }, []);
+
+    const buttonStyles = {
+        '--button_bkg-color': typeMap[btnType],
+        '--button_size': sizeMap[btnSize],
+        '--button_radium': radiumMap[btnShape],
+        '--button_font-size': btnFontSize,
+    } as CSSProperties;
 
     const baseButtonClasses = classnames(
         'button-wrapper',
         className,
         styles['base-button']
     );
-    const baseButtonContentClasses = classnames(
-        'button-content',
-        styles['base-button_content']
-    );
+
+    // const baseButtonContentClasses = classnames(
+    //     'button-content',
+    //     styles['base-button_content']
+    // );
 
     return (
         <button style={buttonStyles} className={baseButtonClasses} {...props}>
-            <span className={baseButtonContentClasses}>{label}</span>
+            {btnChildren}
         </button>
     );
 };
