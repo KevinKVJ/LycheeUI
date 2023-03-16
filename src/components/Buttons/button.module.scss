@@ -1,7 +1,9 @@
-$font-size: var(--button_font-size);
+$font-size: var(--button_font_size);
 $bg-color: var(--button_bkg-color);
-$size-factor: var(--button_size);
-// $radius: var(--button_radium);
+$padding-vert: var(--button_padding_vert);
+$padding-hori: var(--button_padding_hori);
+$radius: var(--button_radium);
+$line-height:var(--button_line_height);
 /* '--button_bkg-color': 'red',
                 '--button_font-size' */
 
@@ -12,17 +14,21 @@ $size-factor: var(--button_size);
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    font-size: $font-size;
-    border-radius: 6px;
-    padding: calc($size-factor * $font-size) calc(2 * $size-factor * $font-size);
+    border-radius: $radius;
+    padding: $padding-vert $padding-hori;
     background-color: $bg-color;
     width: fit-content;
-
+    
     color: #fff;
+    font-size: $font-size;
+    line-height: $line-height;
     font-weight: 600;
+    letter-spacing: 0.1px;
+
+
 
     cursor: pointer;
-    user-select: none;
+    // user-select: none;
 
     // &:focus {
     //     outline: 2px solid #000;

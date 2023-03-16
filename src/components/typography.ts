@@ -1,0 +1,21 @@
+const constants = {
+    sFontSize: 11,
+    mFontSize: 14,
+    lFontSize: 16,
+    xlFontSize: 18,
+    sLineHeight: 16,
+    mLineHeight: 16,
+    lLineHeight: 24,
+    xlLineHeight: 26,
+    paraFontSize: 20,
+    paraLineHeight: 20,
+    heading1Font: 40,
+    heading2Font: 32,
+    heading3Font: 27,
+    heading4Font: 16,
+    heading1LineHeight: 48,
+    heading2LineHeight: 40,
+    heading3LineHeight: 32,
+    heading4LineHeight: 24,
+};
+export default constants;

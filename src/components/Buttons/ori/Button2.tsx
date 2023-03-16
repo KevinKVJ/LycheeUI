@@ -10,7 +10,7 @@ import {
     useMemo,
 } from 'react';
 
-import styles from './button.module.scss';
+import styles from './button2.module.scss';
 /* 
     1. background color
     2. size

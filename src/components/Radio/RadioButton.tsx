@@ -1,7 +1,7 @@
 import { CSSProperties, FC, MouseEventHandler, useEffect, useMemo } from 'react';
 
 /* HTMLProps, */
-import Button from '@/components/Buttons/Button2';
+import Button from '@/components/Buttons/ori/Button2';
 import styles from '@/components/Radio/radio_button.module.scss';
 
 interface IRadioButtonProps {
