@@ -7,6 +7,8 @@ describe('For Button Component', () => {
         // console.log('lalala');
         render(<Button>bt</Button>);
 
-        const newLocal = screen.getByText('bt');
+        const buttonElement = screen.getByText('bt');
+
+        expect(buttonElement.tagName).toEqual('BUTTON');
     });
 });
