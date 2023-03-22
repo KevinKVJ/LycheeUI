@@ -19,7 +19,7 @@ import styles from './button.module.scss';
     2. size
     3. Any type of Button styles
 */
-interface IButtonBaseProps extends PropsWithChildren {
+export interface IButtonBaseProps extends PropsWithChildren {
     size?: 'small' | 'default' | 'large' | 'x-large';
     type?: 'primary' | 'secondary' | 'tertiary';
     shape?: 'default' | 'pill';

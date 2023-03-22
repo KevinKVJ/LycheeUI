@@ -19,7 +19,12 @@
         "jsx": "react-jsx",
         "jsxImportSource": "@emotion/react",
         "typeRoots": ["./node_modules/@types"],
-        "types": ["vite/client", "vite-plugin-svg-icons/client","@emotion/react/types/css-prop"],
+        "types": [
+            "vite/client",
+            "vite-plugin-svg-icons/client",
+            "@emotion/react/types/css-prop",
+            "vitest/globals"
+        ],
         "baseUrl": "./",
         "paths": {
             "@": ["src"],
