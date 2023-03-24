@@ -24,6 +24,17 @@ export default defineConfig({
     test: {
         globals: true,
         environment: 'jsdom',
+        setupFiles: path.resolve(
+            __dirname,
+            'src/components/setup.ts'
+        ),
+        // reporters: 'verbose',
+        // css: {
+        //     modules:{
+        //         classNameStrategy: 'non-scoped'
+        //     }
+        // },
+        css: true,
     },
     plugins: [
         react(reactSetting),

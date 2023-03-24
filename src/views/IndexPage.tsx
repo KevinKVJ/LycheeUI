@@ -7,7 +7,7 @@ const IndexPage = () => {
         <>
             <div className='index_page'>TS_Template</div>
             <Button size='small' />
-            <Button />
+            <Button></Button>
             <Button size='large' />
             <Button size='x-large' />
         </>

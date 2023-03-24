@@ -4,9 +4,6 @@ import {
     ButtonHTMLAttributes,
     CSSProperties,
     FC,
-    // FocusEventHandler,
-    // HTMLProps,
-    // MouseEventHandler,
     PropsWithChildren,
     ReactNode,
     useMemo,
@@ -20,28 +17,29 @@ import styles from './button.module.scss';
     3. Any type of Button styles
 */
 export interface IButtonBaseProps extends PropsWithChildren {
-    size?: 'small' | 'default' | 'large' | 'x-large';
-    type?: 'primary' | 'secondary' | 'tertiary';
-    shape?: 'default' | 'pill';
+    className: string;
+    size: 'small' | 'default' | 'large' | 'x-large';
+    type: 'primary' | 'secondary' | 'tertiary';
+    shape: 'default' | 'pill';
     // fontSize?: number;
-    className?: string;
-    prefixElement?: ReactNode;
-    suffixElement?: ReactNode;
-    // onClick?: MouseEventHandler;
+    prefixElement: ReactNode;
+    suffixElement: ReactNode;
+    // onClick: MouseEventHandler;
     // onFocus?: FocusEventHandler;
     // onBlur?: FocusEventHandler;
 }
 
-type ButtonType = IButtonBaseProps &
+type ButtonType = Partial<IButtonBaseProps> &
     ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<ButtonType> = ({
+    className,
     size,
     type,
     // fontSize,
     shape,
     children,
-    className,
+    onClick,
     ...props
 }) => {
     const { btnType, btnSize, btnShape, btnChildren } =
@@ -75,7 +73,7 @@ const Button: FC<ButtonType> = ({
             sLineHeight,
             mLineHeight,
             lLineHeight,
-            xlLineHeight
+            xlLineHeight,
         } = typography;
 
         return {
@@ -83,7 +81,12 @@ const Button: FC<ButtonType> = ({
                 small: getSizeObj(4, 8, sFontSize, sLineHeight),
                 default: getSizeObj(8, 12, mFontSize, mLineHeight),
                 large: getSizeObj(8, 16, lFontSize, lLineHeight),
-                'x-large': getSizeObj(12, 22, xlFontSize, xlLineHeight),
+                'x-large': getSizeObj(
+                    12,
+                    22,
+                    xlFontSize,
+                    xlLineHeight
+                ),
             },
 
             typeMap: {
@@ -106,19 +109,22 @@ const Button: FC<ButtonType> = ({
         '--button_padding_hori': `${sizeMap[btnSize].paddingHori}px`,
         '--button_font_size': `${sizeMap[btnSize].fontSize}px`,
         '--button_line_height': `${sizeMap[btnSize].lineHeight}px`,
-        '--button_radium':`${radiumMap[btnShape]}px`,
+        '--button_radium': `${radiumMap[btnShape]}px`,
     } as CSSProperties;
 
     const baseButtonClasses = classnames(
-        'button-wrapper',
+        'button-comp',
         className,
         styles['base-button']
     );
+
+    
 
     return (
         <button
             style={buttonStyles}
             className={baseButtonClasses}
+            onClick={onClick}
             {...props}
         >
             {btnChildren}
