@@ -28,13 +28,12 @@ export default defineConfig({
             __dirname,
             'src/components/setup.ts'
         ),
-        // reporters: 'verbose',
-        // css: {
-        //     modules:{
-        //         classNameStrategy: 'non-scoped'
-        //     }
-        // },
-        css: true,
+        reporters: 'verbose',
+        css: {
+            modules:{
+                classNameStrategy: 'non-scoped'
+            }
+        },
     },
     plugins: [
         react(reactSetting),

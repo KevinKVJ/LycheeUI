@@ -1,5 +1,4 @@
-import { Route, Routes } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import routeInfo from './router/router';
 
@@ -14,7 +13,11 @@ function App() {
         <BrowserRouter>
             <Routes>
                 {routeInfo.map(({ path, element }, index) => (
-                    <Route path={path as string} element={element} key={index} />
+                    <Route
+                        path={path as string}
+                        element={element}
+                        key={index}
+                    />
                 ))}
             </Routes>
         </BrowserRouter>
