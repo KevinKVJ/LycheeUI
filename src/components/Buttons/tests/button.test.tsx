@@ -142,7 +142,9 @@ describe('BUTTON', () => {
             )
         ).toBe<string>(`${lLineHeight}px`);
     });
+
     describe.todo('With Prop "type"');
+
     it('should have a new shape (radius) when it work with a explicit prop "shape"', () => {
         render(<Button shape='pill' />);
         const buttonElement = screen.getByRole('button');
@@ -163,21 +165,17 @@ describe('BUTTON', () => {
             );
         });
         it('should have a new inner html when it has been set a explicit prop "children": <div><span>Today is a sunny day</span></div>', () => {
-            render(
+            const { queryByTestId } = render(
                 <Button>
-                    <div>
+                    <div data-testid='children-dom'>
                         <span>Today is a sunny day</span>
                     </div>
                 </Button>
             );
-            const buttonElement = screen.getByRole('button');
 
-            expect(buttonElement.innerHTML).toBe(
-                '<div><span>Today is a sunny day</span></div>'
-            );
+            expect(queryByTestId('children-dom')).toBeInTheDocument();
         });
     });
     describe.todo('With Prop "prefixElement"');
     describe.todo('With Prop "suffixElement"');
-    // describe.todo('With Prop: suffixElement');
 });

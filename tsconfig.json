@@ -23,7 +23,8 @@
             "vite/client",
             "vite-plugin-svg-icons/client",
             "@emotion/react/types/css-prop",
-            "vitest/globals"
+            "vitest/globals",
+            "vitest-dom/extend-expect"
         ],
         "baseUrl": "./",
         "paths": {
@@ -31,6 +32,6 @@
             "@/*": ["src/*"]
         }
     },
-    "include": ["src"],
+    "include": ["src", "src/components/setup.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
