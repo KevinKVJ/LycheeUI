@@ -40,6 +40,8 @@ const Button: FC<ButtonType> = ({
     shape,
     children,
     onClick,
+    prefixElement,
+    suffixElement,
     ...props
 }) => {
     const { btnType, btnSize, btnShape, btnChildren } =
@@ -127,7 +129,9 @@ const Button: FC<ButtonType> = ({
             onClick={onClick}
             {...props}
         >
+            <div className="button_prefix" data-testid='prefix'>{prefixElement}</div>
             {btnChildren}
+            <div className="button_prefix" data-testid='suffix'>{suffixElement}</div>
         </button>
     );
 };
